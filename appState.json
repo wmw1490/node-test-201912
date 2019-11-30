@@ -1,0 +1,76 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "69cc3422-a2fc-4f21-a31a-30df69754ed0": {
+        "id": "69cc3422-a2fc-4f21-a31a-30df69754ed0",
+        "parent": null,
+        "name": "node-test-201912",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "bc7a6a38-37ca-4e6d-9318-f84dfd449c30"
+        ],
+        "isRemovable": false,
+        "filePath": "node-test-201912"
+      },
+      "bc7a6a38-37ca-4e6d-9318-f84dfd449c30": {
+        "id": "bc7a6a38-37ca-4e6d-9318-f84dfd449c30",
+        "parent": "69cc3422-a2fc-4f21-a31a-30df69754ed0",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "node-test-201912/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n\n    onst https = require('https');\n\n    https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {\n      let data = '';\n\n      // A chunk of data has been recieved.\n      resp.on('data', (chunk) => {\n        data += chunk;\n      });\n\n      // The whole response has been received. Print out the result.\n      resp.on('end', () => {\n        console.log(JSON.parse(data).explanation);\n      });\n\n    }).on(\"error\", (err) => {\n      console.log(\"Error: \" + err.message);\n    });\n\n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs10.x",
+          "handler": "handler",
+          "timeout": 120,
+          "memory": 1024,
+          "layers": []
+        },
+        "triggers": []
+      }
+    },
+    "rootNode": "69cc3422-a2fc-4f21-a31a-30df69754ed0",
+    "openFiles": [
+      "bc7a6a38-37ca-4e6d-9318-f84dfd449c30"
+    ],
+    "currentFileId": "bc7a6a38-37ca-4e6d-9318-f84dfd449c30",
+    "resources": {},
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "node-test-201912",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-west-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1575130458895
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "node-test-201912",
+      "url": "https://github.com/wmw1490/node-test-201912"
+    }
+  }
+}
