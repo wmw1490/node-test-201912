@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "node-test-201912/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n\n    onst https = require('https');\n\n    https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {\n      let data = '';\n\n      // A chunk of data has been recieved.\n      resp.on('data', (chunk) => {\n        data += chunk;\n      });\n\n      // The whole response has been received. Print out the result.\n      resp.on('end', () => {\n        console.log(JSON.parse(data).explanation);\n      });\n\n    }).on(\"error\", (err) => {\n      console.log(\"Error: \" + err.message);\n    });\n\n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n\n    const https = require('https');\n\n    https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {\n      let data = '';\n\n      // A chunk of data has been recieved.\n      resp.on('data', (chunk) => {\n        data += chunk;\n      });\n\n      // The whole response has been received. Print out the result.\n      resp.on('end', () => {\n        console.log(JSON.parse(data).explanation);\n      });\n\n    }).on(\"error\", (err) => {\n      console.log(\"Error: \" + err.message);\n    });\n\n    callback(null, {\"message\": \"Successfully executed\"});\n}",
         "config": {
           "runtime": "nodejs10.x",
           "handler": "handler",
@@ -64,7 +64,7 @@
     "projectRegion": "us-west-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1575130458895
+    "lastSave": 1575130504010
   },
   "VCS_STATE": {
     "provider": "GitHub",
